@@ -1,0 +1,27 @@
+MindCare v0.4 — Supabase patch
+
+IMPORTANT:
+- In supabase.js replace REPLACE_WITH_YOUR_PUBLISHABLE_KEY with your Publishable/anon key.
+- Do NOT use a service_role or secret key.
+
+index.html:
+Immediately BEFORE the existing app.js script tag, add:
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase.js"></script>
+
+Keep:
+<script src="./app.js"></script>
+
+Then commit/push:
+1. app.js
+2. supabase.js
+3. index.html
+
+The new app:
+- reads therapists/services/availability from Supabase
+- writes confirmed bookings to public.appointments
+- uses the database-generated MC-XXXXXXXX booking code
+- relies on the database validation and overlap protection
+- keeps only the customer's own recent booking references in localStorage for the current device
+
+Admin management remains intentionally disabled until authentication + admin/therapist RLS policies are implemented.
