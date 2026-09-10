@@ -20,7 +20,10 @@ async function loadCatalog(){
   if(!sb) throw new Error('Supabase client غير متصل. تأكد من تحميل supabase.js ومكتبة Supabase.');
   const [t,s,a]=await Promise.all([
     sb.from('therapists').select('id,name,specialty,bio,active').eq('active',true).order('name'),
-    sb.from('services').select('id,name,duration_minutes,price,active').eq('active',true).order('duration_minutes'),
+    sb.from('services')
+  .select('id,name,description,duration_minutes,price,active')
+  .eq('active', true)
+  .order('duration_minutes'),
     sb.from('availability').select('id,therapist_id,available_date,start_time,end_time,active').eq('active',true).order('available_date').order('start_time')
   ]);
   if(t.error) throw t.error;
