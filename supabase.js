@@ -1,15 +1,49 @@
-// MindCare v0.4 — Supabase client configuration
-// IMPORTANT: use only the Publishable/anon key in this public frontend.
-// NEVER place a service_role/secret key here.
+// MindCare v0.5 — Supabase client configuration
+// Public frontend configuration.
+// IMPORTANT:
+// - Use ONLY the Supabase Publishable/anon key here.
+// - NEVER place a service_role/secret key in this file.
 
-const SUPABASE_URL = 'https://ieicwzkrngumurvhlgpu.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllaWN3emtybmd1bXVydmhsZ3B1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5MjQ0MTUsImV4cCI6MjEwNDUwMDQxNX0.kOgWHOaaiIZyga6Cm9EpcUaI1gQnuZ3mhIedQW2FAgo';
+const SUPABASE_URL = 'https://ieicwzkrngumuvrhlgpu.supabase.co';
 
-if (!window.supabase) {
-  console.error('Supabase JS library was not loaded.');
-} else {
-  window.mindcareSupabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-}
+const SUPABASE_PUBLISHABLE_KEY =
+  'YOUR_EXISTING_PUBLISHABLE_OR_ANON_KEY';
+
+(function initializeMindCareSupabase() {
+
+  if (!window.supabase) {
+    console.error(
+      'MindCare: Supabase JS library was not loaded.'
+    );
+    window.mindcareSupabase = null;
+    return;
+  }
+
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    console.error(
+      'MindCare: Supabase URL or Publishable key is missing.'
+    );
+    window.mindcareSupabase = null;
+    return;
+  }
+
+  try {
+
+    window.mindcareSupabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    console.log('MindCare: Supabase client initialized.');
+
+  } catch (error) {
+
+    console.error(
+      'MindCare: Failed to initialize Supabase client.',
+      error
+    );
+
+    window.mindcareSupabase = null;
+  }
+
+})();
