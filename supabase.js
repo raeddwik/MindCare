@@ -1,13 +1,13 @@
 // MindCare v0.5 — Supabase client configuration
 // Public frontend configuration.
 // IMPORTANT:
-// - Use ONLY the Supabase Publishable/anon key here.
+// - uuHs-6xtP2V9Ai2DwKGfA_jNOFdqub.
 // - NEVER place a service_role/secret key in this file.
 
 const SUPABASE_URL = 'https://ieicwzkrngumuvrhlgpu.supabase.co';
 
-const SUPABASE_PUBLISHABLE_KEY =
-  'YOUR_EXISTING_PUBLISHABLE_OR_ANON_KEY';
+const uuHs-6xtP2V9Ai2DwKGfA_jNOFdqub =
+  'uuHs-6xtP2V9Ai2DwKGfA_jNOFdqub';
 
 (function initializeMindCareSupabase() {
 
@@ -19,7 +19,7 @@ const SUPABASE_PUBLISHABLE_KEY =
     return;
   }
 
-  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  if (!SUPABASE_URL || !uuHs-6xtP2V9Ai2DwKGfA_jNOFdqub) {
     console.error(
       'MindCare: Supabase URL or Publishable key is missing.'
     );
@@ -31,7 +31,7 @@ const SUPABASE_PUBLISHABLE_KEY =
 
     window.mindcareSupabase = window.supabase.createClient(
       SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
+      uuHs-6xtP2V9Ai2DwKGfA_jNOFdqub
     );
 
     console.log('MindCare: Supabase client initialized.');
